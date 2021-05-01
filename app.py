@@ -101,8 +101,7 @@ def route5():
         req = request.form
         username = req['username']
         comment = req['comment']
-        number = Comments.query.all()[-1]['number']
-        newdata = Comments(username = username , comment = comment, number = number + 1)
+        newdata = Comments(username = username , comment = comment)
         db.session.add(newdata)
         db.session.commit()
         return redirect('/comments')
