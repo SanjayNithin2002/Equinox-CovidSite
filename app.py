@@ -35,7 +35,7 @@ class Links(db.Model):
 
 class Comments(db.Model):
     __bind_key__ = 'comments'
-    username = db.Column(db.String(20),primary_key = True)
+    username = db.Column(db.String(20))
     comment = db.Column(db.Text, nullable = False , default = 'Nothing to say...')
 
     def __repr__(self):
