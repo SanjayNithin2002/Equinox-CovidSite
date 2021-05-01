@@ -28,7 +28,6 @@ class Links(db.Model):
     __bind_key__ = 'links'
     links = db.Column(db.Text, primary_key = True)
     description = db.Column(db.Text, nullable = False,default ='N/A')
-    ids = db.Column(db.Integer,primary_key = True)
 
     def __repr__(self):
         return 'New link created : ' + self.links
@@ -36,6 +35,7 @@ class Links(db.Model):
 
 class Comments(db.Model):
     __bind_key__ = 'comments'
+    number =db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(20))
     comment = db.Column(db.Text, nullable = False , default = 'Nothing to say...')
 
@@ -101,7 +101,8 @@ def route5():
         req = request.form
         username = req['username']
         comment = req['comment']
-        newdata = Comments(username = username , comment = comment)
+        number = Commnets.query.all()[-1]['number']
+        newdata = Comments(username = username , comment = comment, number = number + 1)
         db.session.add(newdata)
         db.session.commit()
         return redirect('/comments')
