@@ -1,0 +1,70 @@
+{% extends "base.html" %}  
+
+{% block head %}    
+<title> Our Data Base </title>
+{% endblock %}   
+
+
+
+{% block body %}
+<form = '/database', method = "POST">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">City</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Enter your city" aria-label="links" aria-describedby="basic-addon1" name = 'city' id = 'city' required>
+      </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Links</span>
+        </div>
+        <input type="tel" class="form-control" placeholder="Enter your phone number" aria-label="links" aria-describedby="basic-addon1" name = 'contact' id = 'contact' pattern="[0-9]{10}" required>
+      </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Description</span>
+        </div>
+        <input type="text" class="form-control"  aria-label="links" aria-describedby="basic-addon1" name = 'description' id = 'description' maxlength="100" required>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Supply</span>
+        </div>
+        <select name = 'supply' id = 'supply' class="form-select" aria-label="Default select example">
+          <option value = 'beds'>Beds</option>
+          <option value = 'covaxin'>CoVaxin</option>
+          <option value = 'covishield'>CoviShield</option>
+          <option value = 'oxygen'>Oxygen Supply</option>
+          <option value = 'remdesivir'>Remdesivir</option>
+      </select>
+      </div>
+    <br>
+    <button class="btn btn-dark">Upload</button>
+</form>
+<br>
+<br>
+<h1 class="display-4">Our Database </h1>
+<br>
+<table class="table table-success table-striped">
+    <thead>
+    <tr>
+        <th>City</th>
+        <th>Supply</th>
+        <th>Contact</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for datum in data %}
+        <tr>
+            <td>{{ datum.city }}</td>
+            <td>{{ datum.supply }}</td>
+            <td>{{ datum.contact }}</td>
+            <td>{{ datum.description }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}
