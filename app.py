@@ -28,7 +28,7 @@ class Links(db.Model):
     __bind_key__ = 'links'
     links = db.Column(db.Text, primary_key = True)
     description = db.Column(db.Text, nullable = False,default ='N/A')
-    date = db.Column(db.DateTime, nullable = False, default = datetime.utcnow,primary_key = True)
+    ids = db.Column(db.Integer,primary_key = True)
 
     def __repr__(self):
         return 'New link created : ' + self.links
